@@ -15,6 +15,9 @@
   "author": "vhjaho",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "path": "^0.12.7"
   }
 }
