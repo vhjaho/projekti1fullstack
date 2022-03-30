@@ -1,5 +1,5 @@
 //palvelimen portti
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8081;
 
 var express = require("express");
 var app = express();
@@ -88,5 +88,5 @@ app.get("/guestbook", function (req, res) {
 });
 
 app.listen(PORT, function () {
-  console.log("App listening on port 5000");
+  console.log("App listening on port 8081");
 });
