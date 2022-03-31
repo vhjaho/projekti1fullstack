@@ -40,7 +40,7 @@ app.post("/newmsg", function (req, res) {
     if (err) throw err;
     console.log("Message sent");
   });
-  res.send("ajax message sent");
+  res.send("message sent");
 });
 
 //kolmas reitti
