@@ -1,6 +1,7 @@
 //palvelimen portti
 const PORT = process.env.PORT || 5000;
 
+//otetaan express ja muut työkalut käyttöön
 var express = require("express");
 var app = express();
 var fs = require("fs");
@@ -11,10 +12,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+//aloitussivu
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/home.html");
 });
 
+//toinen reitti
 app.get("/newmsg", function (req, res) {
   res.sendFile(__dirname + "/newmessage.html");
 });
@@ -22,6 +25,7 @@ app.get("/newmsg", function (req, res) {
 app.post("/newmsg", function (req, res) {
   var data = require("./guests.json");
 
+  //pusketaan lomakkeen tiedot json-tiedostoon
   data.push({
     username: req.body.username,
     country: req.body.country,
@@ -31,6 +35,7 @@ app.post("/newmsg", function (req, res) {
 
   var jsonS = JSON.stringify(data);
 
+  //kirjoitetaan tiedot tiedostoon merkkijonoina
   fs.writeFile("guests.json", jsonS, (err) => {
     if (err) throw err;
     console.log("Message sent");
@@ -38,6 +43,7 @@ app.post("/newmsg", function (req, res) {
   res.send("ajax message sent");
 });
 
+//kolmas reitti
 app.get("/ajaxmsg", function (req, res) {
   res.sendFile(__dirname + "/ajaxmsg.html");
 });
@@ -61,9 +67,11 @@ app.post("/ajaxmsg", function (req, res) {
   res.sendFile(__dirname + "/ajaxmsg.html");
 });
 
+//guestbook, jossa kaikki viestit
 app.get("/guestbook", function (req, res) {
   var data = require("./guests.json");
 
+  //luodaan table, jossa kaikki json-tiedot
   var table =
     '<table border="1" style="text-align:center;border-collapse: collapse;background-color: #96D4D4;width:100%"> ';
 
